@@ -53,5 +53,5 @@ table<- rbind.data.frame(apply(TrainandTest_ExperimentData,2,mean))
 
 #selects all columns except ID and ActivityID
 head(TrainDFFinal%>% select(!(`tBodyAcc-mean()-X`:`angle(Z,gravityMean)`)))
-write.table(data.frame())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
+write.table(data.frame())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
 
