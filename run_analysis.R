@@ -42,6 +42,9 @@ TidyTable_MeansandSD<-select(TrainandTest_ExperimentData,contains("mean")|contai
 AvearagesTidyTable<-rbind.data.frame(apply(TidyTable_MeansandSD,2,mean))
 Averages<- (setNames(AvearagesTidyTable,colnames(TidyTable_MeansandSD)))[1:86] #remove last two columns(activity ID and Participant ID)
 
+
+
+
 ####################
 #notes - personal ideas:
 #Calculate the mean for each column. 
@@ -50,4 +53,5 @@ table<- rbind.data.frame(apply(TrainandTest_ExperimentData,2,mean))
 
 #selects all columns except ID and ActivityID
 head(TrainDFFinal%>% select(!(`tBodyAcc-mean()-X`:`angle(Z,gravityMean)`)))
-write.table(data.frame()) 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
+write.table(data.frame())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
+
