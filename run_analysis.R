@@ -1,5 +1,5 @@
 #run_analysis.R
-#test2
+
 # Checking if folder already exists.
 install.packages("dplyr")
 library(dplyr)
@@ -40,9 +40,10 @@ TrainandTest_ExperimentData=rbind(TestDFfinal,TrainDFFinal)
 #3. select columns containing the mean and standard deviation for each measurement. 
 TidyTable_MeansandSD<-select(TrainandTest_ExperimentData,contains("mean")|contains("std")|contains("ID"))
 #4. creates a second, independent tidy data set with the average of each variable for each activity and each subject
+#   4.1 create tidy set tables
 AvearagesTidyTable<-rbind.data.frame(apply(TidyTable_MeansandSD,2,mean))
 Averages<- (setNames(AvearagesTidyTable,colnames(TidyTable_MeansandSD)))[1:86] #remove last two columns(activity ID and Participant ID)
-#create the tidy set (averages) as a file row 1 column names and row 2 values 
+#   4.2 create a tidy set file
 if (!file.exists("TidySetAverages.txt")){
     write.csv(data.frame(Averages),file="TidySetAverages.txt"  )
 }
