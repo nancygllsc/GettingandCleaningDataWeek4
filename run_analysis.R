@@ -1,6 +1,7 @@
 #run_analysis.R
 #test2
 # Checking if folder already exists.
+install.packages("dplyr")
 library(dplyr)
 if(!file.exists("rawData.zip")){
     fileURL<- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -41,8 +42,10 @@ TidyTable_MeansandSD<-select(TrainandTest_ExperimentData,contains("mean")|contai
 #4. creates a second, independent tidy data set with the average of each variable for each activity and each subject
 AvearagesTidyTable<-rbind.data.frame(apply(TidyTable_MeansandSD,2,mean))
 Averages<- (setNames(AvearagesTidyTable,colnames(TidyTable_MeansandSD)))[1:86] #remove last two columns(activity ID and Participant ID)
-
-
+#create the tidy set (averages) as a file row 1 column names and row 2 values 
+if (!file.exists("TidySetAverages.txt")){
+    write.csv(data.frame(Averages),file="TidySetAverages.txt"  )
+}
 
 
 ####################
@@ -51,7 +54,7 @@ Averages<- (setNames(AvearagesTidyTable,colnames(TidyTable_MeansandSD)))[1:86] #
 apply(TrainandTest_ExperimentData,2,mean)
 table<- rbind.data.frame(apply(TrainandTest_ExperimentData,2,mean))
 
-#selects all columns except ID and ActivityID
+#selects all columns except ID and Activity ID
 head(TrainDFFinal%>% select(!(`tBodyAcc-mean()-X`:`angle(Z,gravityMean)`)))
 write.table(data.frame())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
 
